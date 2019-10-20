@@ -1,7 +1,7 @@
 /**
  * author: 施建新
- * day: 2019-10-13
- * version：v1.0
+ * day: 2019-10-20
+ * version：v2.0
  * 依赖于jQuery，在js中调用swiper({})
  * imgList(Array): 图片路径
  * animationType：轮播方式,fade/animate,默认animate
