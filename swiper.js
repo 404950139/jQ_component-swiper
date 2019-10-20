@@ -57,9 +57,9 @@
   Swiper.prototype.createDom = function() {
     const $ul = $('<ul class="swiper"></ul>');
     const $oUl = $('<ul class="oUl"></ul>');
-    this.imgList.forEach(item => {
+    this.imgList.forEach((item, index) => {
       const $li = $(`<li><a href="#"><img src="${item}"></img></a></li>`);
-      const $oli = $("<li></li>");
+      const $oli = $(`<li data-index='${index}'></li>`);
       $ul.append($li);
       $oUl.append($oli);
     });
@@ -136,7 +136,8 @@
       borderRadius: "50%",
       backgroundColor: this.liColor,
       display: "inline-block",
-      margin: `0 ${this.liMargin + "px"}`
+      margin: `0 ${this.liMargin + "px"}`,
+      cursor: "pointer"
     }).eq(this.nowIndex).css({
         backgroundColor: this.liActiveColor
     });
@@ -221,6 +222,10 @@
     });
     $(".rightBtn", this.wrap).on("click", () => {
       this.move("next");
+    });
+    $(".oUl li", this.wrap).on("click", (e) => {
+      this.nowIndex = $(e.target).data().index;
+      this.move(this.nowIndex);
     });
     if (this.auto && this.mouseEnter) {
       $(this.wrap)
